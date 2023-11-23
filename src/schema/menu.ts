@@ -7,6 +7,26 @@ const template = {
   'date': Random.now('second'),
   'status|1': ['INACTIVE', 'ACTIVE', 'FINISHED']
 }
+import MenuItemTemplate from '../schema/menuItem'
+import MenuExtraTemplate from '../schema/menuExtra'
+import SalesReportRowTemplate from '../schema/salesReportRow'
+import { MenuExtra, MenuItem, SalesReportRow } from '../schema/types'
+export const handleMenuData = () => {
+  const times = randomInteger(10)
+  let data = {
+    items: [] as MenuItem[],
+    extras: [] as MenuExtra[],
+    sales: [] as SalesReportRow[],
+    ushers: [] as SalesReportRow[]
+  }
+  for (let ind = 0; ind < times; ind++) {
+    data.items.push(Mock.mock(MenuItemTemplate))
+    data.extras.push(Mock.mock(MenuExtraTemplate))
+    data.sales.push(Mock.mock(SalesReportRowTemplate))
+    data.ushers.push(Mock.mock(SalesReportRowTemplate))
+  }
+  return data
+}
 
 const generateMenus = () => {
   const times = randomInteger(10)
@@ -16,5 +36,7 @@ const generateMenus = () => {
   }
   return records
 }
+
+
 
 export default generateMenus()
